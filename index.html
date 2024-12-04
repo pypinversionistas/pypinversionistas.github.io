@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Inversiones en construcción y urbanización">
+    <meta name="keywords" content="">
+    <meta name="author" content="Panax Information Technologies">
+
+    <meta property="og:site_name" content="P&P Inversionistas" />
+    <meta property="og:site" content="pypinversionistas.mx" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="Inversiones en construcción y urbanización" />
+    <meta property="og:image" content="" />
+    <meta name="twitter:card" content="Inversiones en construcción y urbanización">
+    <meta name="contact:email" content="informes@pypinversionistas.mx">
+    <meta name="contact:phone" content="4448483680">
+
+    <meta name="scroll-restoration" content="manual" />
+    <!-- Title -->
+    <title>PYP - adara</title>
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/favicon.jpg" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="./assets/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="xover-manifest" href="manifest.json?v=20240911_1355">
+
+    <!-- Styles -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/fontawesome-all.min.css" rel="stylesheet">
+    <!--<link href="./css/aos.min.css" rel="stylesheet">-->
+    <link href="./css/swiper.css" rel="stylesheet">
+    <link href="./css/style.css?v=20240401_0945" rel="stylesheet">
+    <script src="./js/bootstrap.min.js" defer></script>
+
+    <script type="text/javascript" src="xover/xo.js?v=20240911_1355"></script>
+    <script type="text/javascript" src="custom.js?v=20240911_1355" defer></script>
+    <script type="text/javascript" src="socket.io.js?v=20240911_1355"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js" defer></script>
+
+    <script>
+        xover.listener.on(['unhandledrejection', 'error'], function () {
+            event.preventDefault()
+        })
+    </script>
+</head>
+<body>
+    <header id="header" class="fixed-top" xo-source="header.html">
+    </header>
+
+    <main id="main" style="background-color: white; position: relative;">
+        <article id="adara2" xo-source="assets/article.html"></article>
+        <article id="adara" xo-source="proyectos/adara/article.html" xo-suspense="Intersect"></article>
+
+        <!--<section id="desarrollos" class="section-bg">
+            <div class="row g-4" data-aos="fade-up" xo-source="#menu" xo-stylesheet="tiles.xslt" title="Nuestros <em>Desarrollos</em>">
+            </div>
+        </section>-->
+        <!--<section id="presencia" class="section-bg">
+            <div data-aos="fade-up" xo-source="#desarrollos" xo-stylesheet="mapa.xslt" title="Nuestra <em>Presencia</em>" class="container mapa externos"></div>
+        </section>-->
+        <!--<section id="testimoniales" class="section-bg">
+            <div data-aos="fade-up" xo-source="#testimoniales" xo-stylesheet="testimoniales.xslt" title="Testimoniales"></div>
+        </section>-->
+
+    </main>
+
+    <footer id="footer" xo-source="footer.html"></footer>
+    <script src="./js/bootstrap.min.js"></script><!-- Bootstrap framework -->
+    <script src="./js/swiper.min.js"></script>
+    <script src="./js/aos.js"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCf4CxGRp-FNTXD2Db54g3mzr-M25E7AlY&callback=initMap&v=weekly&libraries=marker" defer></script>-->
+
+</body>
+
+</html>
