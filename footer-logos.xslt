@@ -14,7 +14,7 @@
 	<xsl:template match="*"/>
 
 	<xsl:template match="data">
-		<a href="desarrollos.html#{@name}" style="object-fit: fill; height: 100%; filter: brightness(0) invert(1);">
+		<a href="/#{@name}" style="object-fit: fill; height: 100%; filter: brightness(0) invert(1);">
 			<img src="proyectos/{@name}/logo.png" alt="" class="rounded logo" style="margin-block: .5rem;"/>
 		</a>
 	</xsl:template>
