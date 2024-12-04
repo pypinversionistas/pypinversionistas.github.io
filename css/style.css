@@ -709,6 +709,10 @@ main section p {
     font-size: larger;
 }
 
+footer p {
+    margin-bottom: 0;
+}
+
 #footer .logo {
     height: 60%;
     margin: auto;
