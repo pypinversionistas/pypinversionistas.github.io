@@ -1,0 +1,120 @@
+﻿<section class="terminos_condiciones">
+    <style>
+        .terminos_condiciones {
+            counter-reset: details-counter; /* Initialize counter */
+        }
+
+            .terminos_condiciones details {
+                counter-increment: details-counter; /* Increment counter for each <details> */
+            }
+
+                .terminos_condiciones details > summary {
+                    list-style: none; /* Remove default marker styling */
+                    position: relative;
+                    padding-left: 2em; /* Add space for numbering */
+                    cursor: pointer; /* Keep pointer for interactivity */
+                }
+
+                    .terminos_condiciones details > summary::before {
+                        content: counter(details-counter, upper-roman) ". "; /* Add Roman numeral */
+                        position: absolute;
+                        left: 0;
+                    }
+
+        details[open] > summary::marker {
+            content: '▾'; /* Customize arrow for expanded */
+        }
+
+        details:not([open]) > summary::marker {
+            content: '▸'; /* Customize arrow for collapsed */
+        }
+
+        /*.terminos_condiciones details > summary::marker {
+        font-size: 1.5em;*/ /* Make the marker (arrow) larger */
+        /*}*/
+
+        /* Optional: Change the arrow's default color */
+        /*.terminos_condiciones details > summary::marker {
+        color: #555;*/ /* Set a custom color for the arrow */
+        /*}*/
+    </style>
+    <h1>Términos y Condiciones de Uso</h1>
+    <p>
+        <strong>Última actualización: 02/12/2024</strong>
+    </p>
+    <p>
+        Bienvenido a {{xo.site.meta["og:site_name"]}}. Estos Términos y Condiciones rigen el uso de nuestro sitio web y servicios. Al acceder, navegar o utilizar este sitio, usted acepta cumplir con estos términos en su totalidad. Si no está de acuerdo con alguna parte de los mismos, le recomendamos no utilizar nuestros servicios.
+    </p>
+    <details>
+        <summary>Definiciones</summary>
+        <ul>
+            <li><strong>"Usuario":</strong>Persona que accede y utiliza nuestro sitio web.</li>
+            <li><strong>"Nosotros":</strong>{{xo.site.meta["og:site_name"]}}.</li>
+            <li><strong>"Contenido":</strong>"Contenido": Todo texto, imágenes, videos, gráficos, software u otros materiales disponibles en el sitio web.</li>
+        </ul>
+    </details>
+    <details>
+        <summary>EL Uso del Sitio Web</summary>
+        <p>
+            El usuario debe ser mayor de edad según la legislación de su lugar de residencia para utilizar el sitio.
+        </p>
+        <p>
+            El sitio no podrá ser usado para actividades ilícitas, ni para infringir derechos de propiedad intelectual o privacidad de terceros.
+        </p>
+        <p>
+            Nos reservamos el derecho de suspender el acceso al sitio a cualquier usuario que incumpla estos términos.
+        </p>
+    </details>
+    <details>
+        <summary>Registro y Cuentas</summary>
+        <p>Algunas secciones del sitio requieren que el usuario se registre.</p>
+        <p>El usuario es responsable de mantener la confidencialidad de su información de inicio de sesión.</p>
+        <p>Es obligatorio proporcionar información precisa y completa durante el proceso de registro.</p>
+    </details>
+    <details>
+        <summary>Propiedad Intelectual</summary>
+        <p>Todo el contenido del sitio web es propiedad de [Nombre de la empresa] o de terceros autorizados, y está protegido por leyes de derechos de autor, marcas y otras normativas aplicables.</p>
+        <p>Queda prohibido copiar, reproducir, modificar o distribuir el contenido sin el consentimiento previo y por escrito del titular.</p>
+    </details>
+    <details>
+        <summary>Limitación de Responsabilidad</summary>
+        <p>
+            No garantizamos que el sitio esté libre de errores, interrupciones o virus.
+        </p>
+        <p>
+            No seremos responsables de daños directos, indirectos o consecuentes derivados del uso del sitio.
+        </p>
+    </details>
+    <details>
+        <summary>Enlaces a Terceros</summary>
+        <p>
+            El sitio puede contener enlaces a sitios web de terceros. No nos hacemos responsables del contenido, políticas o prácticas de estos sitios externos.
+        </p>
+        <p>
+            Para procesar pagos, utilizamos el servicio de Openpay, que proporciona una plataforma segura y confiable para gestionar transacciones. Al realizar una compra o transacción en nuestro sitio, aceptas los términos y condiciones de Openpay, que puedes consultar en su sitio web oficial. Nos comprometemos a garantizar la protección de tus datos conforme a las leyes aplicables y las políticas de privacidad establecidas.
+        </p>
+        <p>
+            Modificaciones de los Términos
+        </p>
+        <p>
+            Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios serán efectivos una vez publicados en esta página. El uso continuado del sitio implica la aceptación de las condiciones.
+        </p>
+        <p>
+            Queda prohibido copiar, reproducir, modificar o distribuir el contenido sin el consentimiento previo y por escrito del titular.
+        </p>
+    </details>
+
+    <details>
+        <summary>Ley Aplicable y Jurisdicción</summary>
+        <p>
+            Estos Términos y Condiciones se regirán por las leyes de Los Estados Unidos Mexicanos. Cualquier disputa será resuelta en los tribunales de San Luis Potosí, México.
+        </p>
+    </details>
+
+    <details>
+        <summary>Contacto</summary>
+        <p>
+            Si tiene preguntas o comentarios sobre estos términos, puede contactarnos a través de {{xo.site.meta["contact:email"]}}.
+        </p>
+    </details>
+</section>

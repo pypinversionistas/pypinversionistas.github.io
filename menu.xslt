@@ -1,0 +1,128 @@
+﻿<xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+xmlns:xo="http://panax.io/xover"
+xmlns:menu="http://xover.dev/widgets/menu"
+xmlns:site="http://panax.io/site"
+xmlns="http://www.w3.org/1999/xhtml"
+>
+	<xsl:template match="/">
+		<xsl:apply-templates mode="menu:widget"></xsl:apply-templates>
+	</xsl:template>
+
+	<xsl:attribute-set name="menu:dropdown">
+		<xsl:attribute name="class">
+			<xsl:text>dropdown-menu </xsl:text>
+			<xsl:value-of select="ancestor-or-self::*[1]/@tag"/>
+		</xsl:attribute>
+	</xsl:attribute-set>
+
+	<xsl:attribute-set name="menu:icon-badge">
+		<xsl:attribute name="class">position-absolute top-0 translate-middle badge rounded-pill bg-danger</xsl:attribute>
+	</xsl:attribute-set>
+
+	<xsl:attribute-set name="menu:item">
+		<xsl:attribute name="class">position-absolute top-0 translate-middle badge rounded-pill bg-danger</xsl:attribute>
+	</xsl:attribute-set>
+
+	<xsl:template match="@*|*" mode="menu:widget">
+		<xsl:param name="items" select="ancestor-or-self::*[1]/*"/>
+		<ul xo:use-attribute-sets="menu:dropdown">
+			<xsl:apply-templates mode="menu:item" select="$items"/>
+		</ul>
+	</xsl:template>
+
+	<xsl:template match="@*|*" mode="menu:icon-badge"/>
+
+	<xsl:template match="messages[item]" mode="menu:icon-badge">
+		<span xo:use-attribute-sets="menu:icon-badge">
+			<xsl:value-of select="count(item)"/>
+			<span class="visually-hidden">unread messages</span>
+		</span>
+	</xsl:template>
+
+	<xsl:template match="@*|*" mode="menu:item-icon" priority="-1"/>
+
+	<xsl:template match="@*|*" mode="menu:item-link-attribute" priority="-1"/>
+
+	<xsl:template match="*[@href]|*[@href]/@*" mode="menu:item-link-attribute">
+		<xsl:variable name="element" select="ancestor-or-self::*[1]"/>
+		<xsl:attribute name="onclick">navigate.call(this)</xsl:attribute>
+		<xsl:copy-of select="$element/@href|$element/@target|$element/@onclick"/>
+	</xsl:template>
+
+	<xsl:template mode="menu:item-attributes" match="@*|*"></xsl:template>
+
+	<xsl:template mode="menu:icon-attributes" match="@*|*"/>
+
+	<xsl:template mode="menu:icon-attributes" match="*[contains(@class,'btn')]">
+		<xsl:attribute name="fill">none</xsl:attribute>
+		<xsl:attribute name="stroke">currentColor</xsl:attribute>
+		<xsl:attribute name="stroke-width">2</xsl:attribute>
+		<xsl:attribute name="stroke-linecap">round</xsl:attribute>
+		<xsl:attribute name="stroke-linejoin">round</xsl:attribute>
+		<xsl:attribute name="class">feather feather-grid</xsl:attribute>
+	</xsl:template>
+
+	<xsl:template match="*[@icon]" mode="menu:item-icon">
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-file-text text-primary" viewBox="0 0 16 16" style="margin-right: 5px">
+			<xsl:apply-templates mode="menu:icon-attributes" select="."/>
+			<use href="#{@icon}"/>
+		</svg>
+	</xsl:template>
+
+	<xsl:template match="@*|*" mode="menu:item-title">
+		<xsl:choose>
+			<xsl:when test="ancestor-or-self::*[1]/@title">
+				<xsl:apply-templates select="ancestor-or-self::*[1]/@title"/>
+			</xsl:when>
+			<xsl:when test="not(ancestor-or-self::*[1]/@icon)">
+				<xsl:apply-templates mode="title" select="."/>
+			</xsl:when>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template match="@*|*" mode="menu:item">
+		<xsl:variable name="dropdown">
+			<xsl:if test="* and ancestor-or-self::*[1]/ancestor::item">dropstart </xsl:if>
+			<xsl:if test="*">dropdown</xsl:if>
+		</xsl:variable>
+		<xsl:variable name="class">
+			<xsl:choose>
+				<xsl:when test="ancestor-or-self::*[1]/@class">
+					<xsl:value-of select="ancestor-or-self::*[1]/@class"/>
+				</xsl:when>
+				<xsl:otherwise>dropdown-item</xsl:otherwise>
+			</xsl:choose>
+		</xsl:variable>
+		<li class="{$dropdown} {local-name()}-menu">
+			<xsl:apply-templates mode="menu:item-attributes" select="."/>
+			<a class="{$dropdown}-toggle {$class}" href="#" role="button">
+				<xsl:if test="$dropdown!=''">
+					<xsl:attribute name="aria-expanded">false</xsl:attribute>
+					<xsl:attribute name="data-bs-toggle">dropdown</xsl:attribute>
+				</xsl:if>
+				<xsl:apply-templates mode="menu:item-link-attribute" select="."/>
+				<!--<xsl:attribute name="href">#</xsl:attribute>-->
+				<xsl:apply-templates mode="menu:item-icon" select="."/>
+				<xsl:apply-templates mode="menu:icon-badge" select="."/>
+				<xsl:apply-templates mode="menu:item-title" select="."/>
+				<!--<xsl:if test="contains($dropdown,'dropstart')">
+					<label style="width: 100%; text-align: -webkit-right; display: inline;" onclick="location.href='{@href}'">
+						<xsl:text> ver</xsl:text>
+					</label>
+				</xsl:if>-->
+			</a>
+			<xsl:if test="$dropdown!=''">
+				<xsl:apply-templates mode="menu:widget" select="."/>
+			</xsl:if>
+		</li>
+	</xsl:template>
+
+	<xsl:template match="_" mode="menu:item">
+		<li class="nav-item py-2 py-lg-1 col-12 col-lg-auto">
+			<div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div>
+			<hr class="d-lg-none my-2 text-white-50"/>
+		</li>
+	</xsl:template>
+
+</xsl:stylesheet>

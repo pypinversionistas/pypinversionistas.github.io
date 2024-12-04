@@ -1,0 +1,139 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+img.white {
+	filter: brightness(0) invert(1);
+}
+
+dialog #content .content-container {
+	display: none
+}
+
+dialog #content > div:nth-child(1) {
+	display: inline
+}
+
+xo-param {
+	display: none;
+}
+
+body {
+	background-color: #eeeeee;
+	font-family:Arial, Helvetica, sans-serif;
+	}
+
+form:not([desarrollo*="$"]) #Mapa {
+	background-size: 100%;
+	background-repeat: no-repeat;
+	width: 100%;
+}
+
+.filter {
+	background-color: white;
+	border: green solid 5px;
+	padding: 1rem;
+	min-width: 250px;
+}
+
+.map {width:100%;}
+
+#sPrototipo, #sManzana, #sLote {font-weight: bold;}
+	
+.foto {
+	float: none;
+	margin-left: auto;
+	margin-right:auto;
+	}
+
+#Filtros {
+	bottom: 20px;
+	position: fixed;
+	left: 20px;
+	max-height: fit-content;
+	width: fit-content;
+	background-color: rgba(0, 0, 0, .5);
+	padding: 20px;
+	flex-direction: column;
+	visibility: hidden;
+}
+
+#Filtros:has(*) {
+	visibility: visible;
+}
+
+div#Filtros div:not(:has(h4>:checked)) .filter_option span {
+	background-color: white !important;
+	/* border: silver solid 1px; */
+}
+
+[desarrollo=zarzuela] #Filtros {
+	top: 0;
+}
+
+/*form:not([desarrollo*="$"]) #Mapa, form:not([desarrollo*="$"]) > * {
+	background-color: var(--brand-dark-color);
+}*/
+
+form[desarrollo=zarzuela] #Mapa, form[desarrollo=zarzuela] > * {
+	background-color: #725e2d;
+}
+
+dialog.xover-component form > * {
+	background-color: initial;
+}
+
+.zoom-controls {
+	background-color: rgba(0, 0, 0, .5);
+	color: white;
+}
+
+#Filtros .filter [type="radio"] {
+	margin-right: .5rem;
+}
+
+#ViviendaDetalles {
+	float:left;
+	background-color: #FFF;
+	padding: 5px;
+	border: thin dotted #666;
+	display: inline;
+}
+
+#datosPrivados {
+	display:none;
+}
+
+.visible {
+	display:inline !important;
+}
+
+#fotos, #detalles {
+
+	padding: 10px;
+	}
+	
+#Titulo {float:left;}
+
+#CerrarVentana {
+	float: right;
+	background-color: #C00;
+	color: #FFF;
+	cursor:pointer;
+	}
+
+.filter_option {
+    white-space: nowrap;
+}
+
+.filter_option input{
+    margin-right: 5px;
+}
+
+.table-centered td, .table-centered th {
+   text-align: center;   
+}
+
+td label {
+    font-weight: bolder;
+    margin-right: 5px;
+}

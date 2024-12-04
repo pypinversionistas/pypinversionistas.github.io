@@ -1,0 +1,256 @@
+﻿<section class="aviso_privacidad">
+    <style>
+    .aviso_privacidad {
+        counter-reset: details-counter; /* Initialize counter */
+    }
+
+    .aviso_privacidad details {
+        counter-increment: details-counter; /* Increment counter for each <details> */
+    }
+
+    .aviso_privacidad details > summary {
+        list-style: none; /* Remove default marker styling */
+        position: relative;
+        padding-left: 2em; /* Add space for numbering */
+        cursor: pointer; /* Keep pointer for interactivity */
+    }
+
+    .aviso_privacidad details > summary::before {
+        content: counter(details-counter, upper-roman) ". "; /* Add Roman numeral */
+        position: absolute;
+        left: 0;
+    }
+
+    details[open] > summary::marker {
+        content: '▾'; /* Customize arrow for expanded */
+    }
+
+    details:not([open]) > summary::marker {
+        content: '▸'; /* Customize arrow for collapsed */
+    }
+
+    /*.aviso_privacidad details > summary::marker {
+        font-size: 1.5em;*/ /* Make the marker (arrow) larger */
+    /*}*/
+
+    /* Optional: Change the arrow's default color */
+    /*.aviso_privacidad details > summary::marker {
+        color: #555;*/ /* Set a custom color for the arrow */
+    /*}*/
+    </style>
+    <h1>Aviso de Privacidad</h1>
+    <p>
+        <strong>Última actualización: 18/10/2024</strong>
+    </p>
+    <details>
+        <summary>EL RESPONSABLE:</summary>
+        <p>
+            <slot name="responsable">PYP CONTRATISTAS SA DE CV</slot> (en adelante “La Empresa” y/o “El Responsable”), con domicilio en <slot name="domicilio">HIMNO NACIONAL No. 1305 INT 5, COL. JARDIN, CP. 78270, SAN LUIS POTOSI, S.L.P.</slot>, es responsable del tratamiento de los datos personales que se recaban de forma general a través de nuestra página de internet o cualquier canal o medio de contacto por el cual sean proporcionados, los cuales serán protegidos conforme a lo dispuesto por la Ley Federal de Protección de Datos Personales en Posesión de Particulares, su reglamento y demás normatividad que resulte aplicable.
+        </p>
+        <p>Para los efectos del presente aviso de privacidad, se utilizarán las siguientes definiciones:</p>
+        <ul>
+            <li>
+                <strong>El Titular:</strong>Toda persona que directa o indirectamente proporcione a la empresa datos
+                personales de cualquier tipo, incluso los sensibles, a través del sitio web o cualquiera de los
+                medios oficiales de la empresa, siempre y cuando sea con fines inherentes a una relación
+                presente o futura, cierta o incierta, de carácter comercial, jurídica, de colaboración, etc.
+            </li>
+            <li>
+                <strong>El Responsable:</strong><slot name="responsable">PYP CONTRATISTAS SA DE CV</slot> cuando le sean proporcionados datos
+                personales en los términos del presente aviso de privacidad y de lo establecido en la Ley
+                Federal de Protección de Datos Personales en Posesión de Particulares y su reglamento,
+                para fines comerciales, jurídicos y/o de colaboración.
+            </li>
+            <li>
+                <strong>Los Datos:</strong>Cualquier tipo de información de carácter personal, patrimonial, económica,
+                sensible, etc., que sea proporcionada por el titular, a la empresa, para los fines aquí
+                establecidos.
+            </li>
+            <li>
+                <strong>Derechos ARCO:</strong>Se refiere a los Derechos de Acceso, Rectificación, Cancelación y Oposición
+                tutelados en la Constitución Política de los Estados Unidos Mexicanos a través de los cuales
+                el titular puede controlar el uso que se le de a sus datos personales.
+            </li>
+        </ul>
+    </details>
+    <details>
+        <summary>EL CONSENTIMIENTO:</summary>
+        <p>
+            En cumplimiento con lo dispuesto por el artículo 8º de la Federal de Protección de Datos Personales en Posesión de los Particulares, <slot name="responsable">PYP CONTRATISTAS SA DE CV</slot> le informa que, en caso de que usted continúe navegando en nuestro sitio web, proporcione cualquier tipo de información y/o dato personal, solicite el inicio de una nueva relación jurídica, comercial o de colaboración, o continúe ejerciendo una ya existente sin ningún tipo de oposición a lo establecido en el presente aviso, se considerará que otorga su conformidad con el mismo y por tanto su consentimiento para el tratamiento de sus datos personales.
+        </p>
+    </details>
+    <details>
+        <summary>EL USO Y FINALIDAD:</summary>
+        <p>
+            En ese sentido, la empresa en concordancia con el consentimiento otorgado por El Titular para el tratamiento de sus Datos Personales, aun los Sensibles, patrimoniales y/o financieros, le comunicamos que los mismos serán tratados bajo métodos y procedimientos de seguridad y privacidad a fin de poder formalizar y desarrollar cabalmente la relación jurídica que tenemos celebrada o por celebrar, pero sin que se vea afectada la seguridad de sus Datos Personales, relación que puede ser de carácter comercial, de servicios, de representación o de colaboración. Esta empresa solamente podrá transferir sus Datos Personales a sus encargados, terceros, incluyendo empresas filiales y/o toda persona física o moral, nacional o extranjera vinculados con esta empresa, para cumplir con los fines acordados en la relación antes mencionada. Las personas que reciban y manejen sus Datos Personales, de igual forma estarán obligadas en los mismos términos del presente aviso.
+        </p>
+    </details>
+    <details>
+        <summary>CONSULTA Y MODIFICACIÓN:</summary>
+        <p>
+            El presente aviso podrá sufrir modificaciones en cualquier tiempo y será dado a conocer a través de la página www.pypinversionistas.mx, por correo electrónico, formato físico y/o por cualquier otro medio que se determine para tal efecto, el cual además sirve como medida compensatoria en los términos de la Ley Federal de Protección de Datos Personales en Posesión de los Particulares y su Reglamento.
+        </p>
+        <p>
+            <slot name="responsable">PYP CONTRATISTAS SA DE CV</slot>, en su calidad de responsable de los Datos Personales proporcionados, mantendrá las mismas medidas de seguridad administrativas, técnicas y físicas que permitan proteger los Datos Personales contra daño, pérdida, alteración, destrucción o el uso, acceso o tratamiento no autorizado que utiliza para el manejo de su propia información.
+        </p>
+    </details>
+    <details>
+        <summary>DE LOS DERECHOS ARCO:</summary>
+        <p>
+            Para efectos de facilitar al Titular de la información, un fácil acceso a sus derechos de Acceso, Rectificación, Cancelación y Oposición reconocidos en la Constitución Política de los Estados Unidos Mexicanos, favor de comunicarse mediante cualquiera de los medios oficiales de contacto que tenemos disponibles, con la intención de darle a conocer la forma en que podrá ejercer dichos derechos, a través de la solicitud correspondiente de la cual si es su deseo se le podrá brindar un formato.
+        </p><p>
+            El ejercicio de los derechos de Acceso, Rectificación, Cancelación y Oposición, o en cuanto al tratamiento de sus datos podrá efectuarse por escrito en el domicilio de esta empresa o a través del correo electrónico informes@pypinversionistas.mx, observándose las formalidades establecidas en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares y su Reglamento.
+        </p><p>
+            Esta empresa, sus encargados, terceros, incluyendo empresas filiales, y toda persona física o moral, nacional o extranjera vinculados con ella, estarán obligados a guardar confidencialidad respecto de los Datos Personales proporcionados o recogidos a través de cualquier medio electrónico, aún después de finalizar sus relaciones con el Titular.
+        </p><p>
+            La cancelación de Datos Personales dará lugar a un periodo de bloqueo tras el cual se procederá a la supresión del dato. La responsable podrá conservarlos exclusivamente para efectos de las responsabilidades nacidas del tratamiento. El periodo de bloqueo será equivalente al plazo de prescripción de las acciones derivadas de la relación jurídica que funda el tratamiento en los términos de la Ley aplicable en la materia.
+        </p><p>
+            Una vez cancelados los Datos Personales se dará aviso a su Titular mediante correo electrónico o por escrito.
+        </p><p>
+            El responsable hará del conocimiento de sus encargados, terceros, incluyendo empresas filiales, y cualquier tercero, ya sea persona física o moral, nacional o extranjera vinculados con ella, de la solicitud de rectificación o cancelación de Datos Personales por parte de su Titular, para que procedan también en los mismos términos.
+        </p>
+        <p>El responsable no estará obligada a cancelar los Datos Personales cuando:</p>
+        <ol type="I">
+            <li>
+                Se refiera a las partes de un contrato privado, social o administrativo y sean necesarios para su desarrollo y cumplimiento;
+            </li>
+            <li>
+                Deban ser tratados por disposición legal;
+            </li>
+            <li>
+                Obstaculice actuaciones judiciales o administrativas vinculadas a obligaciones fiscales, la investigación y persecución de delitos o la actualización de sanciones administrativas;
+            </li>
+            <li>
+                Sean necesarios para proteger los intereses jurídicamente tutelados del Titular de los Datos Personales;
+            </li>
+            <li>
+                Sean necesarios para realizar una acción en función del interés público;
+            </li>
+            <li>
+                Sean necesarios para cumplir con una obligación legalmente adquirida por Titular de los Datos Personales; y
+            </li>
+            <li>
+                Sean objeto de tratamiento para la prevención o para el diagnóstico médico o la gestión de servicios de salud, siempre que dicho tratamiento se realice por un profesional de la salud sujeto a un deber de secreto.
+            </li>
+        </ol><p>
+            De resultar procedente la oposición legítima al tratamiento de los Datos Personales por parte del Titular, esta empresa no podrá tratar dichos datos, siempre que no exista una relación contractual, jurídica o comercial vigente entre las partes.
+        </p>
+        <p>
+            La Solicitud de acceso, rectificación, cancelación, oposición o revocación del Consentimiento para el tratamiento de Datos Personales deberá contener y acompañar lo siguiente:
+        </p>
+        <ol type="I">
+            <li>
+                El nombre del Titular de los Datos Personales, domicilio u otro medio para identificarlo y para comunicarle la respuesta a su Solicitud;
+            </li>
+            <li>
+                Los datos para la identificación del representante legal, en caso de la existencia de representación legal del titular, exhibiendo los documentos que acrediten tal personalidad;
+            </li>
+            <li>
+                La descripción clara y precisa de los Datos Personales respecto de los que se busca ejercer alguno de los derechos antes mencionados, y
+            </li>
+            <li>
+                Cualquier otro elemento o documento que facilite la localización de los Datos Personales.
+            </li>
+        </ol>
+        <p>
+            Tratándose de Solicitudes de acceso a Datos Personales, procederá la entrega, previa acreditación de la identidad del solicitante o representante legal, según corresponda.
+        </p>
+        <p>
+            La obligación de acceso a la información se dará por cumplida cuando se pongan a disposición del Titular los Datos Personales mediante una comunicación enviada por correo electrónico; o bien, por escrito acompañando copias simples de sus datos. En caso de que los datos que por escrito se pongan a disposición del titular sean de notable extensión, la entrega de estos será con cargo al titular, previa autorización del mismo.
+        </p>
+        <p>
+            Bastará con que el responsable le indique al Titular los Datos Personales por correo electrónico o por escrito cuando esta empresa no sea la responsable del tratamiento de los datos y por error se le haya solicitado información, para tener por cumplida la solicitud.
+        </p>
+        <p>
+            El responsable podrá negar el acceso a los Datos Personales, o a realizar la rectificación o cancelación o conceder la oposición, o negar la solicitud de revocación del consentimiento para el tratamiento de los mismos, en los siguientes supuestos:
+        </p>
+        <ol type="I">
+            <li>
+                Cuando el solicitante no sea el Titular los Datos Personales, o el representante legal no esté debidamente acreditado para ello;
+            </li>
+            <li>
+                Cuando en su base de datos, no se encuentren los Datos Personales del solicitante;
+            </li>
+            <li>
+                Cuando se lesionen los derechos de un tercero;
+            </li>
+            <li>
+                Cuando exista un impedimento legal, o la resolución de una autoridad competente, que restrinja el acceso a los Datos Personales, o no permita la rectificación, cancelación u oposición de los mismos;
+            </li>
+            <li>
+                Cuando la rectificación, cancelación u oposición haya sido previamente realizada; y
+            </li>
+            <li>
+                Esta negativa podrá ser parcial, en cuyo caso esta empresa efectuará el acceso, rectificación, cancelación u oposición requerida por el Titular, de los datos que si procedan, debiendo informar el motivo de su decisión acompañando, en su caso, las pruebas que resulten pertinentes.
+            </li>
+        </ol>
+        <p>
+            La entrega de los Datos Personales será gratuita, debiendo cubrir el Titular de dichos datos únicamente los gastos justificados de envío o con el costo de reproducción en copias u otros formatos.
+        </p>
+        <p>
+            Todos los derechos se ejercerán por el Titular de los Datos Personales en forma gratuita, previa acreditación de su identidad ante esta empresa. No obstante, si la misma persona reitera su solicitud en un periodo menor a doce meses, los costos no serán mayores a tres días de salario mínimo general vigente en el Distrito Federal, a menos que existan modificaciones sustanciales al Aviso de Privacidad que motiven nuevas consultas.
+        </p>
+    </details>
+    <details>
+        <summary>
+            DE LA TRANSERENCIA DE DATOS
+        </summary>
+        <p>
+            El responsable podrá realizar transferencias nacionales o internacionales de datos sin el consentimiento del Titular cuando se dé alguno de los siguientes supuestos:
+        </p>
+        <ol type="I">
+            <li>
+                Cuando la transferencia esté prevista en una ley o tratado internacional en los que México
+                sea parte;
+            </li>
+            <li>
+                Cuando la transferencia sea necesaria para la prevención o el diagnóstico médico, la
+                prestación de asistencia sanitaria, tratamiento médico o la gestión de servicios sanitarios;
+            </li>
+            <li>
+                Cuando la transferencia sea efectuada a sociedades controladoras, subsidiarias o afiliadas
+                bajo el control común de la responsable, o a una sociedad matriz o a cualquier sociedad del
+                mismo grupo de la responsable que opere bajo los mismos procesos y políticas internas;
+            </li>
+            <li>
+                Cuando la transferencia sea necesaria por virtud de un contrato celebrado o por celebrar
+                en interés del titular, por la responsable y un tercero;
+            </li>
+            <li>
+                Cuando la transferencia sea necesaria o legalmente exigida para la salvaguarda de un
+                interés público, o para la procuración o administración de justicia;
+            </li>
+            <li>
+                Cuando la transferencia sea precisa para el reconocimiento, ejercicio o defensa de un
+                derecho en un proceso judicial;
+            </li>
+            <li>
+                Cuando la transferencia sea precisa para el mantenimiento o cumplimiento de una
+                relación jurídica entre esta empresa y el Titular de los datos; y
+            </li>
+            <li>
+                Cuando la transferencia sea con fines estadísticos, para prevenir fraudes, lavado de dinero, financiamiento del terrorismo y otras actividades ilícitas, para mejorar nuestros procesos de reclamaciones y otras transacciones, para un mejor manejo del negocio, para realizar investigaciones de mercado, para auditar nuestro negocio, para brindar un mejor servicio, así como para dar cumplimiento a los requerimientos hechos a esta empresa por parte de las autoridades reguladoras de sus operaciones como Secretaría de Hacienda y Crédito Público a través de la Comisión Nacional de Bancaria y de Valores, y la Comisión Nacional para la Protección y Defensa de los Usuarios de Servicios Financieros.
+
+            </li>
+        </ol>
+    </details>
+    <details>
+        <summary>
+            DE LAS QUEJAS O SOLICITUDES DE PROTECCIÓN:
+        </summary>
+        <p>
+            El Titular de los Datos Personales podrá presentar solicitud de protección de datos o cualquier tipo de queja relacionada con el tratamiento de sus datos, en relación con cualquier respuesta recibida (o falta de respuesta) por parte de esta empresa como responsable, ante el Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI) de acuerdo al procedimiento de protección de derechos contenido en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares. Para mayor información consulte <a href="www.inai.gob.mx">www.inai.gob.mx</a>
+        </p>
+    </details>
+    <details>
+        <summary>
+            OFICINA DE CONTACTO:
+        </summary>
+        <p>
+            Si tiene alguna duda sobre el contenido, interpretación o alcance de nuestro aviso de privacidad, políticas, manejo de su información personal y sobre cómo manifestar sus preferencias de privacidad, puede contactar a nuestra Oficina de Privacidad vía correo electrónico a la dirección <a href="mailto:informes@pypinversionistas.mx">informes@pypinversionistas.mx</a> y vía whatsapp al <a href="tel:4448483680">4448483680</a>.
+        </p>
+    </details>
+    <p>
+        POR MEDIO DE LA PRESENTE ME DOY POR ENTERADO DEL AVISO DE PRIVACIDAD ARRIBA DESCRITO Y MANIFIESTO MI CONFORMIDAD CON EL CONTENIDO DEL MISMO, ASIMISMO ENTIENDO QUE AL NO MANIFESTAR OPOSICIÓN EXPRESA CONTRA EL PRESENTE, Y AL PROPORCIONAR A LA EMPRESA CUALQUIER TIPO DE INFORMACÓN, MANIFIESTO MI CONSENTIMIENTO TÁCITO SOBRE LO DISPUESTO EN EL PRESENTE AVISO DE PRIVACIDAD.
+    </p>
+</section>

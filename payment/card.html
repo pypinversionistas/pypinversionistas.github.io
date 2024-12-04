@@ -1,0 +1,931 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!--<script type="text/javascript" src="/xover/xo.js?v=20240911_1355"></script>-->
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://openpay.s3.amazonaws.com/openpay.v1.min.js"></script>
+    <script type='text/javascript'
+            src="https://openpay.s3.amazonaws.com/openpay-data.v1.min.js"></script>
+    <script type="text/javascript">
+
+$(document).ready(function () {
+            //OpenPay.setId('murdz6gpsskxyma0bcrw');
+            //OpenPay.setApiKey('pk_d3ac6afe3bde443c9505a894c34511ba');
+
+            const form = document.querySelector('#payment-form');
+            const result_container = document.querySelector(".flip-card");
+            OpenPay.setId('murdz6gpsskxyma0bcrw');
+            OpenPay.setApiKey('pk_d3ac6afe3bde443c9505a894c34511ba');
+            OpenPay.setSandboxMode(true);
+            //Se genera el id de dispositivo
+            var deviceSessionId = OpenPay.deviceData.setup("payment-form", "deviceIdHiddenFieldName");
+
+            $('#pay-button').on('click', function (event) {
+                event.preventDefault();
+                $("#pay-button").prop("disabled", true);
+                switch (form.type.value) {
+                    case "bank_account":
+                        handleSubmit()
+                        break;
+                    default:
+                        OpenPay.token.extractFormAndCreate('payment-form', success_callbak, error_callbak);
+                }
+            });
+
+            var success_callbak = function (response) {
+                var token_id = response.data.id;
+                $('#token_id').val(token_id);
+                $('#payment-form').submit();
+            };
+
+            var error_callbak = function (response) {
+                var desc = response.data.description != undefined ? response.data.description : response.message;
+                xover.dom.alert("ERROR [" + response.status + "] " + desc);
+                $("#pay-button").prop("disabled", false);
+            };
+            window.addEventListener("message", (event) => {
+                if (event.origin !== location.origin) return;
+                debugger
+                console.log("Received message:", event.data);
+            });
+
+            handleSubmit = async () => {
+                try {
+                    form.classList.remove("success");
+                    form.classList.add("processing");
+                    result_container.querySelector(".status-message-title").innerText = "";
+                    result_container.querySelector(".status-message-content").innerText = "";
+                    event.preventDefault();
+                    const formData = new FormData(form);
+                    //const data = JSON.stringify(Object.fromEntries(formData.entries()));
+                    const data = { ...Object.fromEntries(form.scope.attributes.filterNS("").map(attr => [attr.localName, attr.value])), ...Object.fromEntries(formData.entries()) };
+                    const response = await fetch(form.action, {
+                        method: form.method,
+                        body: JSON.stringify(data)
+                    });
+                    if (response.redirected) {
+                        window.location.replace(response.url);
+                        return
+                    }
+                    const result = await response.text(); // Assuming the server returns HTML or text
+                    //result_container.style.visibility = 'hidden';
+                    form.classList.remove("processing");
+                    if (response.ok) {
+                        form.classList.add("success");
+                        result_container.querySelector(".status-message-title").innerText = ((type) => {
+                            switch (type) {
+                                case 'card':
+                                    return "Pago recibido";
+                                case 'subscription':
+                                    return "Suscripción realizada";
+                                default:
+                                    return "Operación completa";
+                            }
+                        })(form.type.value);
+                        result_container.querySelector(".status-message-content").innerText = result;
+                        const check_icon = result_container.querySelector(".status.icon");
+                        setInterval(function () {
+                            check_icon.style.display = 'none';
+                            let timeoutId = setTimeout(function () {
+                                check_icon.style.display = '';
+                                clearTimeout(timeoutId);
+                            }, 10);
+                        }, 4000);
+                        //alert(result || response.statusText)
+                        //result_container.innerHTML = result; // Display result in the div
+                    } else {
+                        form.classList.remove("processing");
+                        xover.dom.alert(result || response.statusText)
+                        //result_container.innerHTML = `<p style="color: red;">Error: ${result || response.statusText}</p>`;
+                    }
+                } catch (error) {
+                    form.classList.remove("processing");
+                    xover.dom.alert(xover.string.toHTML(`<p style="color: red;">No se pudo completar la operación con el servidor. Por favor intente nuevamente.</p>`))
+                    console.error('Error submitting the form:', error);
+                }
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function (event) {
+            const form = document.querySelector('#payment-form');
+            let searchParams = new URLSearchParams(document.location.search);
+            let type = searchParams.get("type");
+            form.type.value = type;
+            //const hiddenInput = document.createElement("input");
+            //hiddenInput.type = "hidden";
+            //hiddenInput.name = "hiddenFieldName"; // Set the name of the field
+            //hiddenInput.value = "hiddenFieldValue"; // Set the value
+            //form.appendChild(hiddenInput);
+
+            let authorization = searchParams.get("authorization");
+            if (authorization) {
+                const result_container = document.querySelector(".flip-card");
+                form.classList.add("success");
+                result_container.querySelector(".status-message-title").innerText = "Pago recibido";
+                result_container.querySelector(".status-message-content").innerText = `Operación completada con éxito con el número de autorización ${authorization}`;
+            }
+            form.classList.remove("processing");
+        })
+    </script>
+
+    <style>
+        @charset "US-ASCII";
+        @import "https://fonts.googleapis.com/css?family=Lato:300,400,700";
+
+        .bkng-tb-cntnt * {
+            color: #444;
+            font-family: Lato;
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+        ::-webkit-input-placeholder {
+            font-style: italic;
+        }
+
+        :-moz-placeholder {
+            font-style: italic;
+        }
+
+        ::-moz-placeholder {
+            font-style: italic;
+        }
+
+        :-ms-input-placeholder {
+            font-style: italic;
+        }
+
+        body {
+            float: left;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        a {
+            cursor: pointer;
+            display: block;
+            text-decoration: none;
+        }
+
+        a.button {
+            border-radius: 5px 5px 5px 5px;
+            -webkit-border-radius: 5px 5px 5px 5px;
+            -moz-border-radius: 5px 5px 5px 5px;
+            text-align: center;
+            font-size: 21px;
+            font-weight: 400;
+            padding: 12px 0;
+            width: 100%;
+            display: table;
+            background: #E51F04;
+            background: -moz-linear-gradient(top, #E51F04 0%, #A60000 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#E51F04), color-stop(100%,#A60000));
+            background: -webkit-linear-gradient(top, #E51F04 0%,#A60000 100%);
+            background: -o-linear-gradient(top, #E51F04 0%,#A60000 100%);
+            background: -ms-linear-gradient(top, #E51F04 0%,#A60000 100%);
+            background: linear-gradient(top, #E51F04 0%,#A60000 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E51F04', endColorstr='#A60000',GradientType=0 );
+        }
+
+        a.button i {
+            margin-right: 10px;
+        }
+
+        a.button.disabled {
+            background: none repeat scroll 0 0 #ccc;
+            cursor: default;
+        }
+
+        .bkng-tb-cntnt {
+            float: left;
+            width: 800px;
+        }
+
+        .bkng-tb-cntnt a.button {
+            color: #fff;
+            float: right;
+            font-size: 18px;
+            padding: 5px 20px;
+            width: auto;
+        }
+
+        .bkng-tb-cntnt a.button.o {
+            background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+            color: #e51f04;
+            border: 1px solid #e51f04;
+        }
+
+        .bkng-tb-cntnt a.button i {
+            color: #fff;
+        }
+
+        .bkng-tb-cntnt a.button.o i {
+            color: #e51f04;
+        }
+
+        .bkng-tb-cntnt a.button.right i {
+            float: right;
+            margin: 2px 0 0 10px;
+        }
+
+        .bkng-tb-cntnt a.button.left {
+            float: left;
+        }
+
+        .bkng-tb-cntnt a.button.disabled.o {
+            border-color: #ccc;
+            color: #ccc;
+        }
+
+        .bkng-tb-cntnt a.button.disabled.o i {
+            color: #ccc;
+        }
+
+        .pymnts {
+            float: left;
+            width: 800px;
+        }
+
+        .pymnts * {
+            float: left;
+        }
+
+        .sctn-row {
+            margin-bottom: 35px;
+            width: 800px;
+        }
+
+        .sctn-col {
+            width: 375px;
+        }
+
+        .sctn-col.l {
+            width: 425px;
+        }
+
+        .sctn-col input {
+            border: 1px solid #ccc;
+            font-size: 18px;
+            line-height: 24px;
+            padding: 10px 12px;
+            width: 333px;
+        }
+
+        .sctn-col select {
+            border: 1px solid #ccc;
+            font-size: 18px;
+            line-height: 24px;
+            padding: 10px 12px;
+            width: 120px;
+        }
+
+        .sctn-col label {
+            font-size: 24px;
+            line-height: 24px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .sctn-col.x3 {
+            width: 300px;
+        }
+
+        .sctn-col.x3.last {
+            width: 200px;
+        }
+
+        .sctn-col.x3 input {
+            width: 210px;
+        }
+
+        .sctn-col.x3 a {
+            float: right;
+        }
+
+        .pymnts-sctn {
+            width: 800px;
+        }
+
+        .pymnt-itm {
+            margin: 0 0 3px;
+            width: 800px;
+        }
+
+        .pymnt-itm h2 {
+            background-color: #e9e9e9;
+            font-size: 24px;
+            line-height: 24px;
+            margin: 0;
+            padding: 28px 0 28px 20px;
+            width: 780px;
+        }
+
+        .pymnt-itm.active h2 {
+            cursor: default;
+        }
+
+        .pymnt-itm div.pymnt-cntnt {
+            display: none;
+        }
+
+        .pymnt-itm.active div.pymnt-cntnt {
+            background-color: #f7f7f7;
+            display: block;
+            padding: 0 0 30px;
+            width: 100%;
+        }
+
+        .pymnt-cntnt div.sctn-row {
+            margin: 20px 30px 0;
+            width: 740px;
+        }
+
+        .pymnt-cntnt div.sctn-row div.sctn-col {
+            width: 345px;
+        }
+
+        .pymnt-cntnt div.sctn-row div.sctn-col.l {
+            width: 395px;
+        }
+
+        .pymnt-cntnt div.sctn-row div.sctn-col input {
+            width: 303px;
+        }
+
+        .pymnt-cntnt div.sctn-row div.sctn-col.half {
+            width: 155px;
+        }
+
+        .pymnt-cntnt div.sctn-row div.sctn-col.half.l {
+            float: left;
+            width: 190px;
+        }
+
+        .pymnt-cntnt div.sctn-row div.sctn-col.half input {
+            width: 113px;
+        }
+
+        .pymnt-cntnt div.sctn-row div.sctn-col.cvv {
+            background-image: url("./cvv.png");
+            background-position: 156px center;
+            background-repeat: no-repeat;
+            padding-bottom: 30px;
+        }
+
+        .pymnt-cntnt div.sctn-row div.sctn-col.cvv div.sctn-col.half input {
+            width: 110px;
+        }
+
+        .openpay {
+            float: right;
+            height: 60px;
+            margin: 10px 30px 0 0;
+            width: 435px;
+        }
+
+        .openpay div.logo {
+            background-image: url("./openpay.png");
+            background-position: left bottom;
+            background-repeat: no-repeat;
+            border-right: 1px solid #ccc;
+            font-size: 12px;
+            font-weight: 400;
+            height: 45px;
+            padding: 15px 20px 0 0;
+        }
+
+        .openpay div.shield {
+            background-image: url("./security.png");
+            background-position: left bottom;
+            background-repeat: no-repeat;
+            font-size: 12px;
+            font-weight: 400;
+            margin-left: 20px;
+            padding: 20px 0 0 40px;
+            width: 200px;
+        }
+
+        .card-expl {
+            float: left;
+            height: 80px;
+            margin: 20px 0;
+            width: 800px;
+        }
+
+        .card-expl div {
+            background-position: left 45px;
+            background-repeat: no-repeat;
+            height: 70px;
+            padding-top: 10px;
+        }
+
+        .card-expl div.debit {
+            background-image: url("./cards2.png");
+            margin-left: 20px;
+            width: 540px;
+        }
+
+        .card-expl div.credit {
+            background-image: url("./cards1.png");
+            border-right: 1px solid #ccc;
+            margin-left: 30px;
+            width: 209px;
+        }
+
+        .card-expl h4 {
+            font-weight: 400;
+            margin: 0;
+        }
+    </style>
+    <style>
+        .pymnts :has([type=hidden][value=bank_account]) .card-expl,
+        .pymnts :has([type=hidden][value=bank_account]) .sctn-row:not(:has([name=amount],[id=pay-button])) {
+            display: none;
+        }
+
+        .pymnts .sctn-col:has([name=repeat_unit]) {
+            display: none;
+        }
+
+        .pymnts :has([type=hidden][value=subscription]) .sctn-col:has([name=repeat_unit]) {
+            display: block;
+        }
+
+        .pymnt-itm {
+            position: relative;
+        }
+
+        .pymnts :has([type=hidden][value=bank_account]) h2.title::before {
+            content: 'Pago en banco';
+        }
+
+        .pymnts :has([type=hidden][value=subscription]) h2.title::before {
+            content: 'Suscripción';
+        }
+
+        .pymnts :has([type=hidden][value=card]) h2.title::before {
+            content: 'Tarjeta de crédito o débito';
+        }
+
+        .pymnts :has([type=hidden]) h2.title {
+            color: red;
+            content: 'Tarjeta de crédito o débito';
+        }
+
+        .pymnt-itm h2.title::before {
+            color: black;
+        }
+    </style>
+
+    <style>
+        .bkng-tb-cntnt {
+            float: initial;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 99vw;
+            height: 99vh;
+        }
+    </style>
+    <style>
+        .status-message {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            width: 100%;
+        }
+    </style>
+    <style>
+        .status-message > *:has(.icon) {
+            display: none;
+        }
+
+        .flip-card:has(form.processing):not(:has(form.success)) .processing-container {
+            display: block;
+        }
+
+        .success-checkmark {
+            display: none;
+        }
+
+        .flip-card:has(form.success) .success-checkmark {
+            display: block;
+        }
+    </style>
+    <style>
+        /**
+        * Extracted from: SweetAlert
+        * Modified by: Istiak Tridip
+        */
+        .processing-container {
+            display: none;
+        }
+
+        .success-checkmark {
+            width: 100%;
+            height: 115px;
+            margin: 0 auto;
+        }
+
+        .success-checkmark .status.icon {
+            width: 80px;
+            height: 80px;
+            margin: auto;
+            position: relative;
+            border-radius: 50%;
+            box-sizing: content-box;
+            border: 4px solid #4CAF50;
+        }
+
+        .success-checkmark .status.icon::before {
+            top: 3px;
+            left: -2px;
+            width: 30px;
+            transform-origin: 100% 50%;
+            border-radius: 100px 0 0 100px;
+        }
+
+        .success-checkmark .status.icon::after {
+            top: 0;
+            left: 30px;
+            width: 60px;
+            transform-origin: 0 50%;
+            border-radius: 0 100px 100px 0;
+            animation: rotate-circle 4.25s ease-in;
+        }
+
+        .success-checkmark .status.icon::before, .success-checkmark .status.icon::after {
+            content: "";
+            height: 100px;
+            position: absolute;
+            background: #FFFFFF;
+            transform: rotate(-45deg);
+        }
+
+        .success-checkmark .status.icon .icon-line {
+            height: 5px;
+            background-color: #4CAF50;
+            display: block;
+            border-radius: 2px;
+            position: absolute;
+            z-index: 10;
+        }
+
+        .success-checkmark .status.icon .icon-line.line-tip {
+            top: 46px;
+            left: 14px;
+            width: 25px;
+            transform: rotate(45deg);
+            animation: icon-line-tip 0.75s;
+        }
+
+        .success-checkmark .status.icon .icon-line.line-long {
+            top: 38px;
+            right: 8px;
+            width: 47px;
+            transform: rotate(-45deg);
+            animation: icon-line-long 0.75s;
+        }
+
+        .success-checkmark .status.icon .icon-circle {
+            top: -4px;
+            left: -4px;
+            z-index: 10;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            position: absolute;
+            box-sizing: content-box;
+            border: 4px solid rgba(76, 175, 80, 0.5);
+        }
+
+        .success-checkmark .status.icon .icon-fix {
+            top: 8px;
+            width: 5px;
+            left: 26px;
+            z-index: 1;
+            height: 85px;
+            position: absolute;
+            transform: rotate(-45deg);
+            background-color: #FFFFFF;
+        }
+
+        @keyframes rotate-circle {
+            0% {
+                transform: rotate(-45deg);
+            }
+
+            5% {
+                transform: rotate(-45deg);
+            }
+
+            12% {
+                transform: rotate(-405deg);
+            }
+
+            100% {
+                transform: rotate(-405deg);
+            }
+        }
+
+        @keyframes icon-line-tip {
+            0% {
+                width: 0;
+                left: 1px;
+                top: 19px;
+            }
+
+            54% {
+                width: 0;
+                left: 1px;
+                top: 19px;
+            }
+
+            70% {
+                width: 50px;
+                left: -8px;
+                top: 37px;
+            }
+
+            84% {
+                width: 17px;
+                left: 21px;
+                top: 48px;
+            }
+
+            100% {
+                width: 25px;
+                left: 14px;
+                top: 45px;
+            }
+        }
+
+        @keyframes icon-line-long {
+            0% {
+                width: 0;
+                right: 46px;
+                top: 54px;
+            }
+
+            65% {
+                width: 0;
+                right: 46px;
+                top: 54px;
+            }
+
+            84% {
+                width: 55px;
+                right: 0px;
+                top: 35px;
+            }
+
+            100% {
+                width: 47px;
+                right: 8px;
+                top: 38px;
+            }
+        }
+    </style>
+    <style>
+        /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+        .flip-card {
+            background-color: transparent;
+            width: 99vw;
+            height: 100vh;
+            /*border: 1px solid #f1f1f1;*/
+            perspective: 1000px; /* Remove this if you don't want the 3D effect */
+        }
+
+        /* This container is needed to position the front and back side */
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        /* Do an horizontal flip when you move the mouse over the flip box container */
+        .flip-card.flipped .flip-card-inner, .flip-card:has(.processing,.success) .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card .status.icon {
+            display: none;
+        }
+
+        .flip-card.flipped .status.icon, .flip-card:has(.processing,.success) .status.icon {
+            display: block;
+        }
+
+        .flip-card.flipped form.processing .status.icon {
+            display: none;
+        }
+
+        /* Position the front and back side */
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+        }
+
+        /* Style the front side (fallback if image is missing) */
+        .flip-card-front {
+            background-color: #bbb;
+        }
+
+        /* Style the back side */
+        .flip-card-back {
+            background-color: white;
+            transform: rotateY(180deg);
+        }
+    </style>
+    <style>
+        /* Table container to position the spinner */
+        .processing-container {
+            position: relative;
+        }
+
+        /* Overlay to disable interaction */
+        .processing-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        /* SVG spinner */
+        .spinner {
+            width: 88px;
+            height: 88px;
+            animation: rotate 1s linear infinite;
+        }
+
+            .spinner circle {
+                fill: none;
+                stroke: #3498db;
+                stroke-width: 4;
+                stroke-linecap: round;
+                animation: dash 1.5s ease-in-out infinite;
+            }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes dash {
+            0% {
+                stroke-dasharray: 1, 150;
+                stroke-dashoffset: 0;
+            }
+
+            50% {
+                stroke-dasharray: 90, 150;
+                stroke-dashoffset: -35;
+            }
+
+            100% {
+                stroke-dasharray: 90, 150;
+                stroke-dashoffset: -124;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <div class="bkng-tb-cntnt card front">
+                    <div class="pymnts">
+                        <form class="processing" action="https://server.panax.io:8001/checkout" method="post" target="_self" id="payment-form" onsubmit="event.preventDefault(); handleSubmit.call(this)">
+                            <input type="hidden" name="token_id" id="token_id">
+                            <input type="hidden" name="type" id="">
+                            <div class="pymnt-itm card active">
+                                <h2 class="title"></h2>
+                                <div class="pymnt-cntnt">
+                                    <div class="card-expl">
+                                        <div class="credit"><h4>Tarjetas de crédito</h4></div>
+                                        <div class="debit"><h4>Tarjetas de débito</h4></div>
+                                    </div>
+                                    <div class="sctn-row">
+                                        <div class="sctn-col l">
+                                            <label>Nombre del titular</label><input type="text" name="name" placeholder="Como aparece en la tarjeta" autocomplete="off" data-openpay-card="holder_name">
+                                        </div>
+                                        <div class="sctn-col">
+                                            <label>Número de tarjeta</label><input type="text" autocomplete="off" data-openpay-card="card_number" maxlength="16">
+                                        </div>
+                                    </div>
+                                    <div class="sctn-row">
+                                        <div class="sctn-col l">
+                                            <label>Fecha de expiración</label>
+                                            <div class="sctn-col half l">
+                                                <select class="form-select" data-openpay-card="expiration_month">
+                                                    <option>01</option>
+                                                    <option>02</option>
+                                                    <option>03</option>
+                                                    <option>04</option>
+                                                    <option>05</option>
+                                                    <option>06</option>
+                                                    <option>07</option>
+                                                    <option>08</option>
+                                                    <option>09</option>
+                                                    <option>10</option>
+                                                    <option>11</option>
+                                                    <option>12</option>
+                                                </select>
+                                                <!--<input type="text" placeholder="Mes" data-openpay-card="expiration_month">-->
+                                            </div>
+                                            <div class="sctn-col half l">
+                                                <!--<input type="text" placeholder="Año" data-openpay-card="expiration_year">-->
+                                                <select class="form-select" data-openpay-card="expiration_year">
+                                                    <option value="24">2024</option>
+                                                    <option value="25">2025</option>
+                                                    <option value="26">2026</option>
+                                                    <option value="28">2028</option>
+                                                    <option value="29">2029</option>
+                                                    <option value="30">2030</option>
+                                                    <option value="31">2031</option>
+                                                    <option value="32">2032</option>
+                                                    <option value="33">2033</option>
+                                                    <option value="34">2034</option>
+                                                    <option value="35">2035</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="sctn-col cvv">
+                                            <label>Código de seguridad</label>
+                                            <div class="sctn-col half l"><input type="text" placeholder="3 dígitos" autocomplete="off" data-openpay-card="cvv2" maxlength="3"></div>
+                                        </div>
+                                    </div><div class="sctn-row">
+                                        <div class="sctn-col l">
+                                            <label>Monto de pago</label><input type="number" autocomplete="off" name="amount">
+                                        </div>
+                                        <div class="sctn-col">
+                                            <label>Periodicidad</label>
+                                            <select name="repeat_unit" class="form-select">
+                                                <option value="month">Mensual</option>
+                                                <!--<option value="month">Quincenal</option>
+                                                <option value="week">Semanal</option>-->
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="openpay">
+                                        <div class="logo">Transacciones realizadas vía:</div>
+                                        <div class="shield">Tus pagos se realizan de forma segura con encriptación de 256 bits</div>
+                                    </div>
+                                    <div class="sctn-row">
+                                        <a class="button rght" id="pay-button">Procesar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card-back">
+                <div class="status-message">
+                    <div class="processing-container">
+                        <svg class="spinner icon" viewBox="0 0 50 50">
+                            <circle cx="25" cy="25" r="20"></circle>
+                        </svg>
+                    </div>
+                    <div class="success-checkmark">
+                        <div class="status icon">
+                            <span class="icon-line line-tip"></span>
+                            <span class="icon-line line-long"></span>
+                            <div class="icon-circle"></div>
+                            <div class="icon-fix"></div>
+                        </div>
+                        <h1 class="status-message-title"></h1>
+                        <div class="status-message-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

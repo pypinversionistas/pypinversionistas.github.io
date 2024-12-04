@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<settings>
+	<filters bind="data/item" id="Id">
+		<filter title="Disponibilidad" bind="@Status">
+			<option value="Disponible" color="#97d933"/>
+			<option value="Apartado" color="#f81409"/>
+			<option value="Vendido" color="#f86e09"/>
+		</filter>
+		<!--<filter title="Tamaño" bind="@Terreno">
+			<option text="menor que 130m2" value="0~129.999" color="#00007f"/>
+			<option text="130 a 150m2" value="130~149.999" color="#007fff"/>
+			<option text="150 a 190m2" value="150~189.999" color="#ffcc00"/>
+			<option text="190 a 220m2" value="190~219.999" color="#99ff00"/>
+			<option text="Mayor a 220m2" value="220~500" color="#ff6633"/>			
+		</filter>-->
+		<!--<filter title="Precio" bind="@PrecioVenta">
+			<option text="700K - 800K" value="700000~800000"/>
+			<option text="800K - 900K" value="800000.001~900000"/>
+			<option text="900K - 1M" value="900000.001~1000000"/>
+			<option text="$1M" value="1000000~99000000"/>			
+		</filter>-->
+	</filters>
+</settings>

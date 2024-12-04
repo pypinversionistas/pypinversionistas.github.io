@@ -1,0 +1,38 @@
+{
+  "sources": {
+    "^#(.+)$": "./assets/$1.resx",
+    "^#(.+):gallery$": "./assets/desarrollos/$1/gallery.resx",
+    "^#(.+)~edit$": "#$1",
+    "#menu": "./assets/menu.xml",
+    "#aviso_privacidad": "policies/aviso_privacidad_20241018.html",
+    "#equipo_trabajo": "equipo_trabajo.html",
+    "#terminos_condiciones": "terminos_condiciones.html",
+    "#nosotros": "./assets/nosotros.resx",
+    "#mision": "#nosotros",
+    "#vision": "#nosotros",
+    "#valores": "#nosotros",
+    "px-modal": "modal.html",
+    "main-video": "main-video.html",
+    "flowbite-blockquote": "vendors/flowbite/blockquote.html",
+    "#ws": {
+      "xover.socket.connect": [
+        "ws://localhost:8003",
+        {
+          "message": "#messages",
+          "hotreload": "event:hotreload"
+        }
+      ]
+    }
+  },
+  "start": ["#ws"],
+  "state": {
+    "seguro": "${(xover.site.seed || '').replace(/^#/,'')}"
+  },
+  "settings": {
+    "~.xslt||~.html": {
+      "headers": {
+        "Cache-Control": "max-age=1"
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+﻿<menu>
+	<item title="Inicio" href="./#"/>
+	<item title="Invertir" href="./checkout.html"/>
+	<item title="Nosotros">
+		<item title="Contacto" href="./contacto.html#"/>
+		<item title="Misión" target="_self" href="#mision"/>
+		<item title="Visión" target="_self" href="#vision"/>
+		<item title="Valores" target="_self" href="#valores"/>
+		<item title="Aviso de privacidad" target="_self" href="#aviso_privacidad"/>
+	</item>
+	<!--<item title="Eventos" href="eventos.html"/>-->
+</menu>

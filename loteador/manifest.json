@@ -1,0 +1,32 @@
+{
+  "server": {
+    "request": "https://server.panax.io/request.asp",
+    "download": "https://server.panax.io/download.asp"
+  },
+  "session": {
+    "referer_id": "${location.host + location.pathname.split('/',2).join('/')}"
+  },
+  "state": {
+    "desarrollo": "${xo.site.seed.replace(/^#/,'')}"
+  },
+  "sources": {
+    "^#(.+)$": "../proyectos/$1/lotes.xml",
+    "^#(.+):map$": "../proyectos/$1/loteador.map",
+    "^#(.+):settings$": "../proyectos/$1/loteador_settings.xml"
+  },
+  "start": [ "#ws" ],
+  "settings": {
+    "^#(.+)$": {
+      "headers": {
+        "cache": "no-store",
+        "Cache-Control": "no-cache"
+      }
+    },
+    ".resx": {
+      "headers": {
+        "cache": "no-store",
+        "Cache-Control": "no-cache"
+      }
+    }
+  }
+}

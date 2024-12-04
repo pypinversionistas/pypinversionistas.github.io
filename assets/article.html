@@ -1,0 +1,198 @@
+﻿<article xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <style>
+        section ul {
+            line-height: 2rem;
+        }
+
+        section ul.icons li {
+            margin-block: 1rem;
+        }
+
+        section ul.icons li {
+            position: relative;
+            padding-left: 65px;
+        }
+
+        ul.icons li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-size: 30px 30px;
+            width: 30px;
+            height: 30px;
+        }
+
+        ul.icons li:not([class])::before {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" style="color:white;" viewBox="0 0 16 16"><path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"></path><path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"></path></svg>') no-repeat;
+            background-size: contain;
+        }
+
+        /* ul.icons li:nth-child(1)::before {
+                    background-image: url('_images/icon_1.png');
+                }
+
+                ul.icons li:nth-child(2)::before {
+                    background-image: url('_images/icon_2.png');
+                }
+
+                ul.icons li:nth-child(3)::before {
+                    background-image: url('_images/icon_3.png');
+                }
+
+                ul.icons li:nth-child(4)::before {
+                    background-image: url('_images/icon_4.png');
+                }
+
+                ul.icons li:nth-child(5)::before {
+                    background-image: url('_images/icon_5.png');
+                }
+
+                ul.icons li:nth-child(6)::before {
+                    background-image: url('_images/icon_6.png');
+                }
+        */
+        .img-fluid {
+            object-fit: cover;
+            width: 100%;
+            height: auto
+        }
+    </style>
+    <main-video src="assets/main.mp4" controls=""></main-video>
+    <header class="aos-init aos-animate pyp-section d-flex flex-column justify-content-start sticky-top">
+        <div class="col-12 col-lg-6 px-3 d-flex justify-content-end flex-column" style="padding-block: 2rem; text-align: end;">
+            <picture style="align-self: end;">
+                <img src="assets/logotype_color.png" alt="" class="logo">
+            </picture>
+            <!--<h1 class="accent">ADARA RESIDENCIAL</h1>
+            <p class="accent" style="font-size: +18pt">Amenidades Premium</p>-->
+        </div>
+    </header>
+    <section>
+        <div class="col-12 col-lg-8 d-flex align-items-center flex-column justify-content-around sticky-top" data-aos="fade-right" style="top:13rem;">
+            <figure class="max-w-screen-md mx-auto text-center sticky-top">
+                <svg class="w-10 h-10 mx-auto mb-3 text-gray-400 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
+                    <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
+                </svg>
+                <blockquote>Descubre tu hogar inmerso en excepcionales amenidades que convertirán tus días en una única experiencia; reservado exclusivamente para quienes saben darse lo mejor de la vida.</blockquote>
+            </figure>
+        </div>
+    </section>
+    <section>
+        <header>
+            <h2>TERRACERÍAS</h2>
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 d-flex align-items-center flex-column justify-content-around gap-4" data-aos="fade-right">
+                    <ul class="icons">
+                        <li>Tratado de terreno natural</li>
+                        <li>Conformación de base hidráulica</li>
+                        <li>Compactación de materiales pétreos</li>
+                        <li>Tendido y nivelación de materiales</li>
+                        <li>Limpiezas de terrenos</li>
+                        <li>Excavaciones</li>
+                        <li>Demoliciones</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-lg-6 d-flex justify-content-center" data-aos="zoom">
+                    <img class="img-fluid" src="./assets/img/terracerias.jpg" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <header>
+            <h2>ASFALTOS</h2>
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 d-flex align-items-center flex-column justify-content-around gap-4" data-aos="fade-right">
+                    <ul class="icons">
+                        <li>Tendido de carpeta asfáltica</li>
+                        <li>Compactación</li>
+                        <li>Bacheo</li>
+                        <li>Riego de liga</li>
+                        <li>Barrido</li>
+                        <li>Riego de sello sincronizado</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-lg-6 d-flex justify-content-center" data-aos="zoom">
+                    <img class="img-fluid" src="./assets/img/asfaltos.jpg" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <header>
+            <h2>URBANIZACIÓN</h2>
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 d-flex align-items-center flex-column justify-content-around gap-4" data-aos="fade-right">
+                    <ul class="icons">
+                        <li>Calles de concreto hidráulico y asfáltico</li>
+                        <li>Banquetas</li>
+                        <li>Guarniciones</li>
+                        <li>Diseño y estructura de áreas verdes y áreas de donación</li>
+                        <li>Red de drenaje y agua potable</li>
+                        <li>Electrificación</li>
+                        <li>Redes de gas natural</li>
+                        <li>Plataformas para viviendas</li>
+                        <li>Trazo y nivelación</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-lg-6 d-flex justify-content-center" data-aos="zoom">
+                    <img class="img-fluid" src="./assets/img/urbanizacion.jpg" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <header>
+            <h2>INTERIORES</h2>
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 d-flex align-items-center flex-column justify-content-around gap-4" data-aos="fade-right">
+                    <ul class="icons">
+                        <li>Cocinas integrales</li>
+                        <li>Closets</li>
+                        <li>Acabados en general</li>
+                        <li>Remodelaciones y decoraciones</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-lg-6 d-flex justify-content-center" data-aos="zoom">
+                    <img class="img-fluid" src="./assets/img/interiores.jpg" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <header>
+            <h2>¿QUIERES VENDER TU TERRENO?</h2>
+        </header>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6 d-flex align-items-center flex-column justify-content-around gap-4" data-aos="fade-right">
+                    <ul class="icons">
+                        <li>Consultoría</li>
+                        <li>Proyecto</li>
+                        <li>Desarrollos</li>
+                        <li>Maquinaria</li>
+                        <li>Zona Industrial</li>
+                    </ul>
+                </div>
+                <div class="col-12 col-lg-6 d-flex justify-content-center" data-aos="zoom">
+                    <img class="img-fluid" src="./assets/img/presentation_cards.jpg" />
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container sticky-top">
+            <flowbite-blockquote author="Uriel Gómez">TU MEJOR INVERSIÓN<span slot="position">Director Panax</span></flowbite-blockquote>
+        </div>
+    </section>
+</article>
