@@ -23,9 +23,9 @@
     <div class="d-flex justify-content-evenly" style="width: 100%; align-items: center; height: calc(var(--footer-height,80px)*.7);">
         <div xo-source="#iconos" xo-stylesheet="iconos.xslt">
         </div>
-        <div class="col-md-6 d-none d-sm-flex col-sm-6 justify-content-center align-items-center h-100" xo-stylesheet="footer-logos.xslt" xo-source="#desarrollos">
+        <div class="col-md-6 d-sm-flex col-sm-6 justify-content-center align-items-center h-100" xo-stylesheet="footer-logos.xslt" xo-source="#desarrollos">
         </div>
-        <div class="col-md-3 d-none d-lg-inline d-flex justify-content-center row">
+        <div class="col-md-3 d-lg-inline d-flex justify-content-center row text-sm-center text-lg-start section-footer-text">
             <p class="col-md-12">
                 Copyright © <slot xo-source="CurrentYear">2024</slot> <slot>{{xo.site.meta["og:site_name"]}}</slot>
             </p>
