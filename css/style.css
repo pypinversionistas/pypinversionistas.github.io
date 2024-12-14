@@ -713,6 +713,10 @@ footer p {
     margin-bottom: 0;
 }
 
+.xo-syncing {
+    color: transparent;
+}
+
 #footer .logo {
     height: 60%;
     margin: auto;

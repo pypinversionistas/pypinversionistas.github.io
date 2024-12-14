@@ -16,6 +16,7 @@
     <meta name="twitter:card" content="Inversiones en construcción y urbanización">
     <meta name="contact:email" content="informes@pypinversionistas.mx">
     <meta name="contact:phone" content="4448483680">
+    <meta name="contact:address" content="Av. Himno Nacional 1305 Int-5, Col Jardín, CP 78280, San Luis Potosí, SLP">
 
     <meta name="scroll-restoration" content="manual" />
     <!-- Title -->
@@ -59,17 +60,17 @@
     <main>
         <section class="d-flex justify-content-center">
             <figure class="contact-card">
-                <img src="assets/img/contact.jpg" alt="profile-sample" class="background" /><img src="assets/img/contact.jpg" alt="profile-sample1" class="profile" />
+                <img src="assets/img/contact.png" alt="asesor" class="background" />
+                <div class="profile">
+                    <img src="assets/img/contact.png" alt="asesor" />
+                </div>
                 <figcaption>
-                    <h3><a href="mailto:{{xo.site.meta["contact:email"]}}" class="contact-info">{{xo.site.meta["contact:email"]}}</a><span>Asesor</span></h3>
+                    <h3><a href="mailto:{{meta::contact:email}}" class="contact-info">{{meta::contact:email}}</a><span>Asesor</span></h3>
                     <div class="icons">
-                        <a href="tel:{{xo.site.meta["contact:phone"]}}" class="contact-info">{{xo.site.meta["contact:phone"]}}</a>
+                        <a href="tel:{{meta::contact:phone}}" class="contact-info">{{meta::contact:phone}}</a>
                     </div>
                     <hr style="margin:.5rem;"/>
-                    <div>
-                        Av. Himno Nacional 1305 Int-5 Col Jardín CP 78280
-                        San Luis Potosí SLP
-                    </div>
+                    <div>{{meta::contact:address}}</div>
                 </figcaption>
             </figure>
         </section>

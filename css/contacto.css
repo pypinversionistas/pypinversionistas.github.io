@@ -33,6 +33,7 @@ section:has(.contact-card) {
     filter: grayscale(100%) blur(10px);
     -webkit-transition: all 2s ease;
     transition: all 2s ease;
+    min-height: 315px;
 }
 
 .contact-card figcaption {
@@ -48,12 +49,24 @@ section:has(.contact-card) {
     position: absolute;
     bottom: 50%;
     left: 50%;
+    max-height: 100px;
     max-width: 100px;
     opacity: 1;
     box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
     border: 2px solid rgba(255, 255, 255, 0.5);
     -webkit-transform: translate(-50%, 0%);
     transform: translate(-50%, 0%);
+    min-height: 100px;
+    min-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-card .profile img {
+    max-width: 65px;
+    max-height: 65px;
+    margin: auto;
 }
 
 .contact-card h3 {

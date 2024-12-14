@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Submit Your Sitemap to Google Search Console
+Go to Google Search Console: If you haven’t already, you’ll need to verify your domain with Google Search Console (https://search.google.com/search-console/).
+Submit the Sitemap:
+In Google Search Console, select your site property.
+Navigate to the "Sitemaps" section under the "Index" tab.
+Enter the URL of your sitemap (e.g., https://your-username.github.io/sitemap.xml).
+Click "Submit".
+This tells Google to crawl the URLs in your sitemap. 
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>https://pypinversiones.mx/</loc>
+		<lastmod>2024-09-29</lastmod>
+		<priority>1.00</priority>
+	</url>
+	<url>
+		<loc>https://pypinversiones.mx/adara</loc>
+		<lastmod>2024-09-29</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://pypinversiones.mx/contacto.html</loc>
+		<lastmod>2024-12-14</lastmod>
+		<priority>0.80</priority>
+	</url>
+	<url>
+		<loc>https://pypinversiones.mx/checkout.html</loc>
+		<lastmod>2024-12-14</lastmod>
+		<priority>0.80</priority>
+	</url>
+</urlset>
