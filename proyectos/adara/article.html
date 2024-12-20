@@ -1,9 +1,9 @@
-﻿<article xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-    <main-video src="proyectos/adara/main.mp4"></main-video>
+﻿<article xmlns:xsl="http://www.w3.org/1999/XSL/Transform" path=".">
+    <main-video src="{{@path}}/main.mp4"></main-video>
     <header class="aos-init aos-animate pyp-section d-flex flex-column justify-content-start sticky-top">
         <div class="col-12 col-lg-6 px-3 d-flex justify-content-end flex-column" style="padding-block: 2rem; text-align: end;">
             <picture style="align-self: end;">
-                <img src="proyectos/adara/logo.png" alt="" class="logo">
+                <img src="{{@path}}/logo.png" alt="" class="logo">
             </picture>
             <!--<h1 class="accent">ADARA RESIDENCIAL</h1>
             <p class="accent" style="font-size: +18pt">Amenidades Premium</p>-->
@@ -39,10 +39,10 @@
                         <li><strong>Acceso Automatizado</strong></li>
                         <li><strong>Vigilancia 24/7</strong></li>
                     </ul>
-                    <img src="./proyectos/adara/_images/cintillo.png" class="m-3" />
+                    <img src="{{@path}}/_images/cintillo.png" class="m-3" />
                 </div>
                 <div class="col-12 col-lg-6 d-flex justify-content-center" data-aos="zoom">
-                    <img class="img-fluid" src="./proyectos/adara/gallery/ammenities.jpg" />
+                    <img class="img-fluid" src="{{@path}}/gallery/ammenities.jpg" />
                 </div>
             </div>
         </div>
@@ -123,9 +123,9 @@
                         </div>-->
                     </div>
                     <div class="gallery col-sm-12 col-lg-8 col-xxl-8">
-                        <div class="tab-content" id="nav-tabContent" xo-source="inherit" xo-stylesheet="carousel.xslt" path="/proyectos/adara/">
+                        <div class="tab-content" id="nav-tabContent" xo-source="inherit" xo-stylesheet="carousel.xslt" path="/proyectos/">
                             <div class="tab-pane fade show active" id="list-adara" role="tabpanel" aria-labelledby="list-adara-list">
-                                <img src="proyectos/adara/_images/background.jpg" alt="" class="img-fluid">
+                                <img src="{{@path}}/_images/background.jpg" alt="" class="img-fluid">
                             </div>
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                     </p>
                 </div>
                 <div class="col-12 col-lg-6" data-aos="zoom">
-                    <img class="img-fluid" src="./proyectos/adara/_images/ubicacion.jpg" />
+                    <img class="img-fluid" src="{{@path}}/_images/ubicacion.jpg" />
                 </div>
             </div>
         </div>
@@ -163,7 +163,7 @@
                 </div>
                 <div class="col-12 col-lg-6" data-aos="zoom">
                     <a href="loteador/#adara">
-                        <img class="img-fluid" src="./proyectos/adara/sembrado.png" />
+                        <img class="img-fluid" src="{{@path}}/sembrado.png" />
                     </a>
                 </div>
             </div>
